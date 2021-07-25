@@ -1,0 +1,12 @@
+0.6: New note - spp
+
+note over browser:
+Use the JavaScript code it fetched from the server.
+As the form submit button is clicked, it calls the event handler function.
+The event handler creates a new note,adds it to the notes list with the command notes.push(note), 
+rerenders the note list on the page and sends the new note to the server.
+end note.
+
+browser -> server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+                   Contain the new note as JSON-data containing both the content of the note (content) and the timestamp (date).
+server -> browser: 201 created
