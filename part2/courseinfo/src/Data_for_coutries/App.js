@@ -14,8 +14,9 @@ const App = () => {
         axios
             .get(`https://restcountries.eu/rest/v2/name/${input}`)
             .then(response => {
+                console.log(response.data);
                 console.log(typeof response.data)
-                SetCountries(JSON.stringify(response.data))
+                SetCountries(response.data);
             })
     }, [input])
 
@@ -32,7 +33,7 @@ const App = () => {
         <div>
             Find Countries:
             <input value={input} onChange={handleInputChange} />
-            <div>{countries}</div>
+            <div>{countries.map(country => <p key={country.name}>{country.name}</p>)}</div>
         </div>
     )
 };
