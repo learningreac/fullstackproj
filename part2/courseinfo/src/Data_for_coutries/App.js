@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-
+const Countries = ({input,countries}) => {
+    if(input.length>0 && countries.length > 10) {
+        return (
+            <p>Too many matches, specify another filter</p>
+        )
+    }
+    return (
+        <div>{countries.map(country => <p key={country.name}>{country.name}</p>)}</div>
+    )
+}
 
 const App = () => {
 
@@ -28,12 +37,12 @@ const App = () => {
 
     console.log(typeof countries);    
 
-    //.map(country => <p key={country.name}>{country}</p>)
+    //.map(country => <p key={country.name}>{country}</p>)  // this one cause the bug
     return (
         <div>
             Find Countries:
             <input value={input} onChange={handleInputChange} />
-            <div>{countries.map(country => <p key={country.name}>{country.name}</p>)}</div>
+           <Countries countries={countries} input={input}/>
         </div>
     )
 };

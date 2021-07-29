@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
-
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import peoplesService from './services/peoples';
 
 const Filter = ({ showFilter, handleShowChange }) => {
   return (
@@ -36,15 +37,24 @@ const Persons = ({ personsToShow }) => {
 
 const App = () => {
 
-  const [persons, setPersons] = useState([
-    { name: 'Arto Hellas', number: '040-123456' },
-    { name: 'Ada Lovelace', number: '39-44-5323523' },
-    { name: 'Dan Abramov', number: '12-43-234345' },
-    { name: 'Mary Poppendieck', number: '39-23-6423122' }
-  ]);
+  const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNum] = useState('');
   const [newFilter, setFilter] = useState('');
+
+  useEffect(() => {
+    /*console.log('effect');
+    axios
+      .get('http://localhost:3001/persons')
+      .then(response => setPersons(response.data)) */
+      peoplesService
+        .getAll()
+        .then(initialData => {
+          setPersons(initialData)
+        })
+  }, []);
+
+  console.log('persons',persons);
 
 
   const addPerson = (event) => {
@@ -58,7 +68,20 @@ const App = () => {
         name: newName,
         number: newNumber
       };
-      setPersons(persons.concat(personObj));
+
+      /*axios
+        .post('http://localhost:3001/persons', personObj)
+        .then(response => {
+          setPersons(persons.concat(response.data));
+        });
+      */
+     peoplesService
+        .create(personObj)
+        .then(returnedData => {
+          setPersons(persons.concat(returnedData))
+        })
+
+      //setPersons(persons.concat(personObj));
       setNewName('');
       setNewNum('');
       setFilter('');
