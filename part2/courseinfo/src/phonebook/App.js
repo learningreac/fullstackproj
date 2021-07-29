@@ -64,6 +64,17 @@ const App = () => {
   }, []);
 
 
+  const updatePerson = () =>{
+    const person = persons.find(p => p.name === newName);
+    const changedPerson = {...person, number: newNumber};
+    let targetId = person.id;
+    peoplesService
+      .update(targetId, changedPerson)
+      .then(returnedPerson => {
+        setPersons(persons.map(p => p.id !== targetId? p:returnedPerson))
+      })
+  };
+
   const addPerson = (event) => {
     event.preventDefault();
     //console.log('button clicked', event.target);  
@@ -71,7 +82,11 @@ const App = () => {
     //change from array.every() to array.some
 
     if (persons.some(person => person.name === newName)) {
-      alert(`${newName} is already added to phonebook`);
+      //alert(`${newName} is already added to phonebook`);
+      if (window.confirm(`${newName} is already added to phonebook,replace the old number with new one?`)) {
+        console.log('confirms workd to be updated');
+        updatePerson();
+      }
     } else {
       const personObj = {
         name: newName,
@@ -120,11 +135,10 @@ const App = () => {
 
   const deletePerson = (id) => {
     console.log('delete', id)
-    let fname = persons.filter(p => p.id === id)[0].name;
-    console.log(fname);
+    const fname = persons.filter(p => p.id === id)[0].name;
     if (window.confirm(`Delete ${fname}`)) {
       setPersons(persons.filter(p => p.id !== id));
-      
+
       peoplesService
         .toBeDeleted(id)
         .then()
