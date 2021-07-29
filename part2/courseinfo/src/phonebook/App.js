@@ -66,9 +66,11 @@ const App = () => {
 
   const addPerson = (event) => {
     event.preventDefault();
-    //console.log('button clicked', event.target);
+    //console.log('button clicked', event.target);  
+    // console.log('repeated?',persons.every(person => person.name === newName)) 
+    //change from array.every() to array.some
 
-    if (persons.every(item => item.name === newName)) {
+    if (persons.some(person => person.name === newName)) {
       alert(`${newName} is already added to phonebook`);
     } else {
       const personObj = {
@@ -101,7 +103,8 @@ const App = () => {
     : persons.filter(person => person.name.match(regex))
 
   const handleNameChange = (event) => {
-    //console.log(event.target.value);
+    //
+    console.log(event.target.value);
     setNewName(event.target.value);
   };
 
@@ -120,7 +123,7 @@ const App = () => {
     let fname = persons.filter(p => p.id === id)[0].name;
     console.log(fname);
     if (window.confirm(`Delete ${fname}`)) {
-      //setPersons(persons.filter(p => p.id !== id));
+      setPersons(persons.filter(p => p.id !== id));
       
       peoplesService
         .toBeDeleted(id)
