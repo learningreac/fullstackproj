@@ -34,9 +34,9 @@ const Persons = ({ personsToShow, deletePerson }) => {
     <ul>
       {personsToShow.map(person => {
         return (
-            <li key={person.id}> {person.name} {person.number} 
-              <button onClick={() => deletePerson(person.id)}> Delete </button>
-            </li>
+          <li key={person.id}> {person.name} {person.number}
+            <button onClick={() => deletePerson(person.id)}> Delete </button>
+          </li>
         )
       }
       )}
@@ -118,8 +118,12 @@ const App = () => {
 
   const deletePerson = (id) => {
     console.log('delete', id)
-    setPersons(persons.filter(p => p.id !== id))
-  }; 
+    let fname = persons.filter(p => p.id === id)[0].name;
+    console.log(fname);
+    if (window.confirm(`Delete ${fname}`)) {
+      setPersons(persons.filter(p => p.id !== id))
+    }
+  };
 
   return (
     <div>
