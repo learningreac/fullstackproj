@@ -46,7 +46,7 @@ const Persons = ({ personsToShow, deletePerson }) => {
 
 const Notification = ({ message }) => {
   const messageStyle = {
-    color: 'red',
+    color: 'green',
     background: 'lightgrey',
     fontSize: 20,
     borderstyle: 'solid',
@@ -90,6 +90,9 @@ const App = () => {
       .update(targetId, changedPerson)
       .then(returnedPerson => {
         setPersons(persons.map(p => p.id !== targetId ? p : returnedPerson))
+      })
+      .catch(error => {
+        console.log('fail')
       })
   };
 
