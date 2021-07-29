@@ -3,7 +3,8 @@ import peoplesService from './services/peoples';
 
 const Filter = ({ showFilter, handleShowChange }) => {
   return (
-    <div>filter shown with
+    <div>
+      <label>filter shown with:</label>
       <input value={showFilter} onChange={handleShowChange}></input>
     </div>
   )
@@ -43,6 +44,22 @@ const Persons = ({ personsToShow, deletePerson }) => {
   )
 };
 
+const Notification = ({ message }) => {
+  const messageStyle = {
+    color: 'red',
+    background: 'lightgrey',
+    fontSize: 20,
+    borderstyle: 'solid',
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 10
+  };
+
+  if (message === null) return null
+  return (
+    <div style={messageStyle}>{message}</div>
+  )
+};
 
 const App = () => {
 
@@ -50,6 +67,7 @@ const App = () => {
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNum] = useState('');
   const [newFilter, setFilter] = useState('');
+  const [message, setMessage] = useState(null)
 
   useEffect(() => {
     /*console.log('effect');
@@ -64,14 +82,14 @@ const App = () => {
   }, []);
 
 
-  const updatePerson = () =>{
+  const updatePerson = () => {
     const person = persons.find(p => p.name === newName);
-    const changedPerson = {...person, number: newNumber};
+    const changedPerson = { ...person, number: newNumber };
     let targetId = person.id;
     peoplesService
       .update(targetId, changedPerson)
       .then(returnedPerson => {
-        setPersons(persons.map(p => p.id !== targetId? p:returnedPerson))
+        setPersons(persons.map(p => p.id !== targetId ? p : returnedPerson))
       })
   };
 
@@ -104,12 +122,16 @@ const App = () => {
         .then(returnedData => {
           setPersons(persons.concat(returnedData))
         })
-
-      //setPersons(persons.concat(personObj));
-      setNewName('');
-      setNewNum('');
-      setFilter('');
     };
+    //setPersons(persons.concat(personObj));
+    setNewName('');
+    setNewNum('');
+    setFilter('');
+    setMessage(`Added ${newName}`);
+    setTimeout(() => {
+      setMessage(null)
+    }, 5000)
+
   };
 
   let regex = new RegExp('^' + newFilter, "i"); // '^' means start with that letter
@@ -146,9 +168,12 @@ const App = () => {
     }
   };
 
+
+
   return (
     <div>
       <h1>Phonebook</h1>
+      <Notification message={message} />
       <Filter showFilter={newFilter} handleShowChange={handleShowChange} />
 
       <h2>Add a new</h2>
