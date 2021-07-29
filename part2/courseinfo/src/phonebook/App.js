@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { identifier } from '@babel/types';
 import React, { useEffect, useState } from 'react';
 import peoplesService from './services/peoples';
 
@@ -25,12 +25,22 @@ const PersonForm = ({ addPerson, newName, handleNameChange, newNumber, handleNum
   )
 };
 
-const Persons = ({ personsToShow }) => {
+const Persons = ({ personsToShow, deletePerson }) => {
   return (
-    <div>
-      {personsToShow.map(person => <p key={person.name}> {person.name} {person.number}</p>)}
-    </div>
-
+    // delete person.id  
+    // delete function is passed from APP, App does not know the id. the id is a local variable, it pass to the function when call it.
+    // notice also how the event handdler is defined here to Onclick.
+    // Onclick can not be assigned directly to a function call. 
+    <ul>
+      {personsToShow.map(person => {
+        return (
+            <li key={person.id}> {person.name} {person.number} 
+              <button onClick={() => deletePerson(person.id)}> Delete </button>
+            </li>
+        )
+      }
+      )}
+    </ul>
   )
 };
 
@@ -47,14 +57,12 @@ const App = () => {
     axios
       .get('http://localhost:3001/persons')
       .then(response => setPersons(response.data)) */
-      peoplesService
-        .getAll()
-        .then(initialData => {
-          setPersons(initialData)
-        })
+    peoplesService
+      .getAll()
+      .then(initialData => {
+        setPersons(initialData)
+      })
   }, []);
-
-  console.log('persons',persons);
 
 
   const addPerson = (event) => {
@@ -75,7 +83,7 @@ const App = () => {
           setPersons(persons.concat(response.data));
         });
       */
-     peoplesService
+      peoplesService
         .create(personObj)
         .then(returnedData => {
           setPersons(persons.concat(returnedData))
@@ -108,6 +116,11 @@ const App = () => {
     setFilter(e.target.value);
   };
 
+  const deletePerson = (id) => {
+    console.log('delete', id)
+    setPersons(persons.filter(p => p.id !== id))
+  }; 
+
   return (
     <div>
       <h1>Phonebook</h1>
@@ -123,7 +136,7 @@ const App = () => {
       />
 
       <h2>Numbers</h2>
-      <Persons personsToShow={personsToShow} />
+      <Persons personsToShow={personsToShow} deletePerson={deletePerson} />
     </div>
   )
 }
