@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Countries = ({ input, countries }) => {
+const Countries = ({ input, countries, showInfo }) => {
     if (input.length > 0 && countries.length > 10) {
         return (
             <p>Too many matches, specify another filter</p>
@@ -10,9 +10,19 @@ const Countries = ({ input, countries }) => {
         return <Country country={countries[0]}></Country>
     }
     return (
-        <div>{countries.map(country => <p key={country.name}>{country.name}</p>)}</div>
+        <div>
+            <ul>
+                {countries.map(country =>
+                    <li key={country.name}>{country.name}
+                    <button onClick={()=>showInfo(country.name)}>Show</button>
+                    </li>
+                )}
+            </ul>
+        </div>
     )
-}
+};
+
+
 
 const Country = ({ country }) => {
     //console.log('single country', country, country.name);
@@ -55,14 +65,24 @@ const App = () => {
         SetInput(e.target.value);
     };
 
-    //console.log(typeof countries);    
+    const handleShowInfo = (name) => {
+        let targetCountry = countries.find(country => country.name===name);
+        console.log(targetCountry);
+        console.log(typeof targetCountry);
+        return (
+            <Country country={targetCountry}></Country>
+        )
+
+    }; 
+
+   
 
     //.map(country => <p key={country.name}>{country}</p>)  // this one cause the bug
     return (
         <div>
             Find Countries:
             <input value={input} onChange={handleInputChange} />
-            <Countries countries={countries} input={input} />
+            <Countries countries={countries} input={input} showInfo={handleShowInfo}/>
         </div>
     )
 };
