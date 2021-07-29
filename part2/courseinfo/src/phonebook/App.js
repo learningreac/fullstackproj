@@ -1,4 +1,3 @@
-import { identifier } from '@babel/types';
 import React, { useEffect, useState } from 'react';
 import peoplesService from './services/peoples';
 
@@ -121,7 +120,12 @@ const App = () => {
     let fname = persons.filter(p => p.id === id)[0].name;
     console.log(fname);
     if (window.confirm(`Delete ${fname}`)) {
-      setPersons(persons.filter(p => p.id !== id))
+      //setPersons(persons.filter(p => p.id !== id));
+      
+      peoplesService
+        .toBeDeleted(id)
+        .then()
+
     }
   };
 
