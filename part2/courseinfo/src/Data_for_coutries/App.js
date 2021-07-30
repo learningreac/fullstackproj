@@ -56,7 +56,7 @@ const App = () => {
             .get(`https://restcountries.eu/rest/v2/name/${input}`)
             .then(response => {
                 console.log(response.data);
-                //console.log(typeof response.data)
+                console.log(typeof response.data)
                 SetCountries(response.data);
             })
     }, [input])
@@ -68,13 +68,10 @@ const App = () => {
     };
 
     const handleShowInfo = (name) => {
-        let targetCountry = countries.find(country => country.name === name);
+       let targetCountry = countries.find(country => country.name === name);
         console.log(targetCountry);
-        console.log(typeof targetCountry);
-        return (
-            <Country country={targetCountry}></Country>
-        )
-
+        console.log(typeof targetCountry); // OBJ
+        SetCountries([targetCountry]);
     };
 
 
