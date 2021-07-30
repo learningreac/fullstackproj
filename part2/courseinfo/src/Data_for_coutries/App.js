@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Weather from './Weather';
 
 const Countries = ({ input, countries, showInfo }) => {
     if (input.length > 0 && countries.length > 10) {
@@ -14,7 +15,7 @@ const Countries = ({ input, countries, showInfo }) => {
             <ul>
                 {countries.map(country =>
                     <li key={country.name}>{country.name}
-                    <button onClick={()=>showInfo(country.name)}>Show</button>
+                        <button onClick={() => showInfo(country.name)}>Show</button>
                     </li>
                 )}
             </ul>
@@ -29,15 +30,16 @@ const Country = ({ country }) => {
     return (
         <div>
             <h1>{country.name}</h1>
-            <p>Capital:{country.capital}</p>
-            <p>Population: {country.population}</p>
+            <p><b>Capital:</b>{country.capital}</p>
+            <p><b>Population:</b> {country.population}</p>
             <div>
                 <h2>Languages</h2>
                 <ul>
                     {country.languages.map(lan => <li key={lan.name}>{lan.name}</li>)}
                 </ul>
             </div>
-            <img src={country.flag} alt="flag" width={200} />
+            <img src={country.flag} alt="flag" width={200} style={{ boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)' }} />
+            <Weather name={country.name} />
         </div>
     )
 }
@@ -49,7 +51,7 @@ const App = () => {
 
     // SetCountries(JSON.stringify(response.data))
     useEffect(() => {
-        console.log('effect');
+
         axios
             .get(`https://restcountries.eu/rest/v2/name/${input}`)
             .then(response => {
@@ -66,23 +68,23 @@ const App = () => {
     };
 
     const handleShowInfo = (name) => {
-        let targetCountry = countries.find(country => country.name===name);
+        let targetCountry = countries.find(country => country.name === name);
         console.log(targetCountry);
         console.log(typeof targetCountry);
         return (
             <Country country={targetCountry}></Country>
         )
 
-    }; 
+    };
 
-   
+
 
     //.map(country => <p key={country.name}>{country}</p>)  // this one cause the bug
     return (
         <div>
             Find Countries:
             <input value={input} onChange={handleInputChange} />
-            <Countries countries={countries} input={input} showInfo={handleShowInfo}/>
+            <Countries countries={countries} input={input} showInfo={handleShowInfo} />
         </div>
     )
 };
