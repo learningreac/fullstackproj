@@ -1,7 +1,22 @@
+
 const express = require('express');
 const app = express();
+const morgan = require('morgan');
+
+const requestLogger = (request, response, next) => {
+  console.log('Method:', request.method)
+  console.log('Path:', request.path)
+  console.log('Body:', request.body)
+  console.log('----')
+  next()
+};
+
+
 
 app.use(express.json());  // essential for POST middleware
+//app.use(requestLogger);
+app.use(morgan('tiny'));
+
 
 let notes = [
   {
@@ -169,6 +184,10 @@ app.post('/api/persons', (request, response) => {
 
 //app.post('./api/persons', (request, response) => { 
 // the dot cause the former bug!!!!
+const unknownEndpoint = (request, response) => {
+  response.status(404).send({ error: 'unknown endpoint'})
+};
+app.use(unknownEndpoint);// after all the routes
 
 const PORT = 3001;
 app.listen(PORT, () => {
