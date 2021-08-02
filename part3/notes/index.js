@@ -15,7 +15,8 @@ const requestLogger = (request, response, next) => {
 
 app.use(express.json());  // essential for POST middleware
 //app.use(requestLogger);
-app.use(morgan('tiny'));
+app.use(morgan('tiny')); //GET /api/notes 200 328 - 1.394 ms
+// combined
 
 
 let notes = [
