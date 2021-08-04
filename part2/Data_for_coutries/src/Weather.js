@@ -1,18 +1,13 @@
-//weather stack:http://api.weatherstack.com/current?access_key=45f520cd5d7c0ab7d6c0d6482199d0ce&query=Finland
+//weather stack:http://api.weatherstack.com/current?access_key=youkey&query=Finland
 
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-
-
 const Weather = ({ name }) => {
     const [weather, setWeather] = useState({});
-    //const api_key = process.env.REACT_APP_WEATHER_API_KEY;
-    const api_key = '45f520cd5d7c0ab7d6c0d6482199d0ce';
-    console.log('key', api_key);
+    const api_key = process.env.REACT_APP_WEATHER_API_KEY;
 
     useEffect(() => {
-
         axios.get(`http://api.weatherstack.com/current?access_key=${api_key}&query=${name}`)
             .then(response => {
                 console.log('weather', response.data.current);

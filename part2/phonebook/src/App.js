@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import peoplesService from './services/peoples';
 
+//must run json server to get the intial data
+
 const Filter = ({ showFilter, handleShowChange }) => {
   return (
     <div>
@@ -26,6 +28,7 @@ const PersonForm = ({ addPerson, newName, handleNameChange, newNumber, handleNum
 };
 
 const Persons = ({ personsToShow, deletePerson }) => {
+  console.log('personstoshow', personsToShow);
   return (
     // delete person.id  
     // delete function is passed from APP, App does not know the id. the id is a local variable, it pass to the function when call it.
@@ -143,8 +146,7 @@ const App = () => {
     : persons.filter(person => person.name.match(regex))
 
   const handleNameChange = (event) => {
-    //
-    console.log(event.target.value);
+    //console.log(event.target.value);
     setNewName(event.target.value);
   };
 
@@ -154,7 +156,7 @@ const App = () => {
   };
 
   const handleShowChange = (e) => {
-    console.log(e.target.value);
+    //console.log(e.target.value);
     setFilter(e.target.value);
   };
 

@@ -23,8 +23,6 @@ const Countries = ({ input, countries, showInfo }) => {
     )
 };
 
-
-
 const Country = ({ country }) => {
     //console.log('single country', country, country.name);
     return (
@@ -45,13 +43,11 @@ const Country = ({ country }) => {
 }
 
 const App = () => {
-
     const [input, SetInput] = useState('');
     const [countries, SetCountries] = useState([]);
 
     // SetCountries(JSON.stringify(response.data))
     useEffect(() => {
-
         axios
             .get(`https://restcountries.eu/rest/v2/name/${input}`)
             .then(response => {
@@ -61,7 +57,6 @@ const App = () => {
             })
     }, [input])
 
-    //console.log('render', countries.length, 'countries');
 
     const handleInputChange = (e) => {
         SetInput(e.target.value);
@@ -73,8 +68,6 @@ const App = () => {
         console.log(typeof targetCountry); // OBJ
         SetCountries([targetCountry]);
     };
-
-
 
     //.map(country => <p key={country.name}>{country}</p>)  // this one cause the bug
     return (
