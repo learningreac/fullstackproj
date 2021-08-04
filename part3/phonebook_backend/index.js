@@ -1,6 +1,7 @@
 
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const morgan = require('morgan');
 
 const requestLogger = (request, response, next) => {
@@ -11,7 +12,7 @@ const requestLogger = (request, response, next) => {
   next()
 };
 
-
+app.use(cors());
 app.use(express.json());  // essential for POST middleware
 //app.use(requestLogger);
 app.use(morgan('tiny')); //GET /api/notes 200 328 - 1.394 ms
@@ -108,7 +109,7 @@ const unknownEndpoint = (request, response) => {
 };
 app.use(unknownEndpoint);// after all the routes
 
-const PORT = 3001;
+const PORT =  process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 });
