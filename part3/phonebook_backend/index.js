@@ -12,10 +12,11 @@ const requestLogger = (request, response, next) => {
   next()
 };
 
+app.use(express.static('build'));
 app.use(cors());
 app.use(express.json());  // essential for POST middleware
 //app.use(requestLogger);
-app.use(morgan('tiny')); //GET /api/notes 200 328 - 1.394 ms
+//app.use(morgan('tiny')); //GET /api/notes 200 328 - 1.394 ms
 // combined
 
 
@@ -79,7 +80,7 @@ app.delete('/api/persons/:id', (request, response) => {
 
 app.post('/api/persons', (request, response) => {
   const body = request.body
-  console.log(body)
+  console.log('backend', body)
 
   if(!body.name || !body.number) {
     return response.status(400).json({
@@ -109,7 +110,7 @@ const unknownEndpoint = (request, response) => {
 };
 app.use(unknownEndpoint);// after all the routes
 
-const PORT =  process.env.PORT || 3001;
+const PORT =  process.env.PORT || 3003;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 });
