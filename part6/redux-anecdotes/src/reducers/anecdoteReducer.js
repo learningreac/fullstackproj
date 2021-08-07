@@ -50,7 +50,7 @@ export const voteFor = (id) => {
   }
 };
 
-export const addNew = (content) => {
+export const createAnecdote = (content) => {
   return {
     type:"NEW_ANEC",
     data:{
