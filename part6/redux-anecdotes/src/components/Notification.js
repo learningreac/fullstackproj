@@ -3,7 +3,14 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 
 const Notification = () => {
-  const notification = useSelector(state => state.selected)
+  const notification = useSelector(state => {
+    const anecdotes = state.anecdotes;
+    let target = anecdotes.find(a => a.id === state.anecdotes[0].id);
+    console.log(target, state.selected)
+    return target.content;
+  })
+
+  console.log(notification);
   const style = {
     border: 'solid',
     padding: 10,
