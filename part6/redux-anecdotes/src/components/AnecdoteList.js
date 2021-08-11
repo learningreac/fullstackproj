@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { voteFor } from '../reducers/anecdoteReducer';
 
 const AnecdoteList = () => {
-    const anecdotes = useSelector(state => state)
+    const anecdotes = useSelector(state => state.anecdotes)
     console.log('current state', anecdotes)
     const dispatch = useDispatch()
 
@@ -12,10 +12,13 @@ const AnecdoteList = () => {
         dispatch(voteFor(id));
     };
 
+    if(anecdotes===undefined) return null;
+    
+
     return (
         <div>
             <h2>Anecdotes</h2>
-            {anecdotes.map(anecdote =>
+           {anecdotes.map(anecdote =>
                 <div key={anecdote.id}>
                     <div>
                         {anecdote.content}
