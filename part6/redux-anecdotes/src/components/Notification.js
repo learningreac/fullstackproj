@@ -5,9 +5,11 @@ import { useSelector } from 'react-redux';
 const Notification = () => {
   const notification = useSelector(state => {
     const anecdotes = state.anecdotes;
-    let target = anecdotes.find(a => a.id === state.anecdotes[0].id);
-    console.log(target, state.selected)
-    return target.content;
+    let target = anecdotes.find(a => a.id == state.selected);
+    console.log('target',target)
+    //console.log(typeof target)
+    //if (target) console.log(target.content)
+    if(target) return target.content;
   })
 
   console.log(notification);
@@ -17,7 +19,7 @@ const Notification = () => {
     borderWidth: 1
   }
 
-  if(notification=== null) return null;
+  if(!notification) return null;
   return (
     <div style={style}>
       {notification}
