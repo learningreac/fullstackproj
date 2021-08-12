@@ -4,17 +4,21 @@ import { setFilter } from "../reducers/filterReducer";
 const Filter = () => {
     const dispatch = useDispatch();
 
-    const filterChange = (e) => {
+    const handleChange = (e) => {
         dispatch(setFilter(e.target.value))
          console.log(e.target.value)
      }
+
+     const style = {
+        marginBottom: 10
+      }
     
 
     return (
-        <div>
+        <div style={style}>
             <form>
                 <label>Filter</label>
-                <input onChange={filterChange} /> 
+                <input onChange={handleChange} /> 
             </form>
         </div>
     )
