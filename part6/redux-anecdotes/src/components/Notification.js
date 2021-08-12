@@ -22,7 +22,7 @@ const Notification = () => {
   if(!notification) return null;
   return (
     <div style={style}>
-      {notification}
+      <p>You voted '{notification}'</p>
     </div>
   )
 }

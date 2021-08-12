@@ -13,8 +13,12 @@ const AnecdoteList = () => {
         dispatch(voteFor(id));
     };
 
-    const notice = id => dispatch(setNotice(id));
-    //vote(anecdote.id)
+    const notice = id => {
+        dispatch(setNotice(id));
+        setTimeout( () => dispatch(setNotice(null)), 5000)
+    }
+
+
     if (anecdotes === undefined) return null;
 
 
