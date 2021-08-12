@@ -4,7 +4,14 @@ import { voteFor } from '../reducers/anecdoteReducer';
 import { setNotice } from '../reducers/notificationReducer'
 
 const AnecdoteList = () => {
-    const anecdotes = useSelector(state => state.anecdotes)
+    //const anecdotes = useSelector(state => state.anecdotes)
+    const anecdotes = useSelector(state => {
+        const regex = new RegExp(state.filter, "i");
+        if (state.filter === null) {
+            return state.anecdotes
+        }
+        return state.anecdotes.filter(a => a.content.match(regex))
+    })
     console.log('current state', anecdotes)
     const dispatch = useDispatch()
 
@@ -24,7 +31,7 @@ const AnecdoteList = () => {
 
     return (
         <div>
-            <h2>Anecdotes</h2>
+            
             {anecdotes.map(anecdote =>
                 <div key={anecdote.id}>
                     <div>

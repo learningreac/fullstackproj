@@ -19,7 +19,7 @@ const anecdotesAtStart = [
   
   //const initialState = anecdotesAtStart.map(asObject)
   const anecdotes = anecdotesAtStart.map(asObject);
-  const initialState = {anecdotes, selected:''};
+  const initialState = {anecdotes, selected:'', filter:''};
 
   
 
