@@ -50,14 +50,16 @@ export const voteFor = (id) => {
   }
 };
 
-export const createAnecdote = (content) => {
+export const createAnecdote = (data) => {
   return {
     type:"NEW_ANEC",
+    data
+    /*
     data:{
       content,
       id: getId(),
       votes: 0
-    }
+    } */
   }
 }
 
