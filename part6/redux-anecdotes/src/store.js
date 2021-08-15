@@ -19,8 +19,8 @@ const anecdotesAtStart = [
   
   //const initialState = anecdotesAtStart.map(asObject)
   const anecdotes = anecdotesAtStart.map(asObject);
-  const initialState = {anecdotes, selected:'', filter:''};
+ 
 
   
 
-  export default initialState;
+  export default anecdotes;

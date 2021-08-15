@@ -1,6 +1,5 @@
-import initialState from "../store";
 
-const notificationReducer = (state = initialState.selected, action) => {
+const notificationReducer = (state = '', action) => {
     // console.log('state now: ', state)
     // console.log('action', action)
 
