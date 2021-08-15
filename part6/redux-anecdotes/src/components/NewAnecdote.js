@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { createAnecdote } from '../reducers/anecdoteReducer';
 import anecService from '../services/anecdotes'
 
-const AnecdoteForm = (props) => {
+const NewAnecdote = (props) => {
     const dispatch = useDispatch();
 
     const addNewAnec = async (event) => {
@@ -25,4 +25,4 @@ const AnecdoteForm = (props) => {
     )
 }
 
-export default AnecdoteForm
+export default NewAnecdote
