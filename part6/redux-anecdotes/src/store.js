@@ -1,3 +1,29 @@
+import { createStore, combineReducers, applyMiddleware } from "redux"
+import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+import anecdoteReducer from './reducers/anecdoteReducer';
+import notificationReducer from './reducers/notificationReducer';
+import filterReducer from './reducers/filterReducer'
+
+
+const reducer = combineReducers({
+  anecdotes: anecdoteReducer,
+  selected: notificationReducer,
+  filter: filterReducer
+});// those are the keys for store object.
+
+const store = createStore(
+  reducer,
+  composeWithDevTools(
+    applyMiddleware(thunk)
+  )
+);
+console.log('store getstate', store.getState())
+
+
+export default store;
+/*
 const anecdotesAtStart = [
     'If it hurts, do it more often',
     'Adding manpower to a late software project makes it later!',
@@ -6,9 +32,9 @@ const anecdotesAtStart = [
     'Premature optimization is the root of all evil.',
     'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.'
   ]
-  
+
   export const getId = () => (100000 * Math.random()).toFixed(0)
-  
+
   const asObject = (anecdote) => {
     return {
       content: anecdote,
@@ -16,11 +42,10 @@ const anecdotesAtStart = [
       votes: 0
     }
   }
-  
+
   //const initialState = anecdotesAtStart.map(asObject)
-  const anecdotes = anecdotesAtStart.map(asObject);
- 
 
-  
+ */
 
-  export default anecdotes;
+
+

@@ -1,5 +1,4 @@
-import initialState from "../store";
-import { getId } from "../store";
+import anecService from '../services/anecdotes';
 
 
 
@@ -7,23 +6,22 @@ const anecdoteReducer = (state = [], action) => {
   console.log('state now: ', state)
   console.log('action', action);
 
-
-  switch(action.type) {
+  switch (action.type) {
     case 'INIT_ANEC':
       return action.data
 
     case 'ADD_VOTE': {
       const id = action.data.id;
       const anecdoteToChange = state.find(a => a.id === id);
-      console.log('tochange',anecdoteToChange)
+      console.log('tochange', anecdoteToChange)
       const changedAnecdote = {
         ...anecdoteToChange,
         votes: anecdoteToChange.votes + 1
       };
 
-      return state.map(anec => 
-        anec.id !== id? anec : changedAnecdote)
-        .sort((a,b) => b.votes - a.votes)
+      return state.map(anec =>
+        anec.id !== id ? anec : changedAnecdote)
+        .sort((a, b) => b.votes - a.votes)
     }
 
     case 'NEW_ANEC': {
@@ -32,27 +30,31 @@ const anecdoteReducer = (state = [], action) => {
 
     default:
       return state
-  }  
+  }
 };
 
-
-export const initializeAnec = (anecdote) => {
-  return {
-    type: 'INIT_ANEC',
-    data: anecdote
+// before anecdote data is passed to this action creator,
+// now the data is got within the function with getAll()
+export const initializeAnec = () => {
+  return async dispatch => {
+    const anecdotes = await anecService.getAll()
+    dispatch({
+      type: 'INIT_ANEC',
+      data: anecdotes
+    })
   }
-} 
+}
 
 export const voteFor = (id) => {
   return {
-    type:'ADD_VOTE',
-    data: {id}
+    type: 'ADD_VOTE',
+    data: { id }
   }
 };
 
 export const createAnecdote = (data) => {
   return {
-    type:"NEW_ANEC",
+    type: "NEW_ANEC",
     data
     /*
     data:{
