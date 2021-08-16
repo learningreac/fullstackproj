@@ -1,10 +1,10 @@
-
+import { connect } from "react-redux";
 import { setFilter } from "../reducers/filterReducer";
 
 const Filter = (props) => {
 
     const handleChange = (e) => {
-        dispatch(props.setFilter(e.target.value))
+        props.setFilter(e.target.value)
      }
 
      const style = {
@@ -23,8 +23,8 @@ const Filter = (props) => {
 }
 
 const mapDispatchToProps = {
-    setFilter
-}
+    setFilter  // short version of object , key and value has same name, with the help of object literal
+} // simple version of mapDispatchToProps
 
 const ConnectedFilter  =  connect(
     null,
