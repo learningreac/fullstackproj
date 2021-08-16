@@ -45,6 +45,7 @@ export const initializeAnec = () => {
 }
 
 export const voteFor = (id) => {
+  
   return {
     type: 'ADD_VOTE',
     data: { id }
