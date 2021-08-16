@@ -20,7 +20,7 @@ const Notification = (props) => {
 const mapStateToProps = (state) => {
   const anecdotes = state.anecdotes;
   const target = anecdotes.find(a => a.id == state.selected);
-  console.log('target', target)
+  //console.log('target', target)
 
   return {
     target

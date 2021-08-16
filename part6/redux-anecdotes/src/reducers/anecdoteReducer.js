@@ -1,10 +1,8 @@
 import anecService from '../services/anecdotes';
 
-
-
 const anecdoteReducer = (state = [], action) => {
-  console.log('state now: ', state)
-  console.log('action', action);
+  //console.log('state now: ', state)
+  //console.log('action', action);
 
   switch (action.type) {
     case 'INIT_ANEC':
@@ -13,7 +11,7 @@ const anecdoteReducer = (state = [], action) => {
     case 'ADD_VOTE': {
       const id = action.data.id;
       const anecdoteToChange = state.find(a => a.id === id);
-      console.log('tochange', anecdoteToChange)
+      //console.log('tochange', anecdoteToChange)
       const changedAnecdote = {
         ...anecdoteToChange,
         votes: anecdoteToChange.votes + 1

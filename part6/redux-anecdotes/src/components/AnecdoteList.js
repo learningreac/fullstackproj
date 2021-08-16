@@ -2,7 +2,8 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { voteFor } from '../reducers/anecdoteReducer';
 import { setNotice } from '../reducers/notificationReducer'
-import anecService from '../services/anecdotes'
+
+let timeoutID;
 
 const AnecdoteList = () => {
     //const anecdotes = useSelector(state => state.anecdotes)
@@ -13,7 +14,7 @@ const AnecdoteList = () => {
         }
         return state.anecdotes.filter(a => a.content.match(regex))
     })
-    console.log('current state', anecdotes)
+    //console.log('current state', anecdotes)
     const dispatch = useDispatch()
 
     const vote = (id) => {
@@ -21,18 +22,17 @@ const AnecdoteList = () => {
         dispatch(voteFor(id));
     };
 
+    
     const notice = id => {
         dispatch(setNotice(id));
-        setTimeout( () => dispatch(setNotice(null)), 5000)
+        clearTimeout(timeoutID);
+        timeoutID = setTimeout(() => dispatch(setNotice(null)), 5000);
     }
 
-
     if (anecdotes === undefined) return null;
-
-
     return (
         <div>
-            
+
             {anecdotes.map(anecdote =>
                 <div key={anecdote.id}>
                     <div>
@@ -42,8 +42,8 @@ const AnecdoteList = () => {
                         has {anecdote.votes}
                         <button onClick={() => {
                             vote(anecdote.id)
-                            notice(anecdote.id) 
-                            }}> vote </button>
+                            notice(anecdote.id)
+                        }}> vote </button>
                     </div>
                 </div>
             )}
