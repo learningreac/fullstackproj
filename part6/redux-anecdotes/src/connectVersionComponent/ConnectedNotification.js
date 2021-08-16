@@ -9,25 +9,23 @@ const style = {
 }
 
 const Notification = (props) => {
-
-  const anecdotes = props.anecdotes;
-  let target = anecdotes.find(a => a.id == props.selected);
-  console.log('target', target)
-
-  if (!target) return null;
+  if (!props.target) return null;
   return (
     <div style={style}>
-      <p>You voted '{target.content}'</p>
+      <p>You voted '{props.target.content}'</p>
     </div>
   )
-}
+};
 
 const mapStateToProps = (state) => {
-  return {
-    anecdotes: state.anecdotes,
-    selected: state.selected
-  }
-}
+  const anecdotes = state.anecdotes;
+  const target = anecdotes.find(a => a.id == state.selected);
+  console.log('target', target)
 
-const ConnectedNotification = connect(mapStateToProps)(Notification)
-export default ConnectedNotification
+  return {
+    target
+  }
+};
+
+const ConnectedNotification = connect(mapStateToProps)(Notification);
+export default ConnectedNotification;
