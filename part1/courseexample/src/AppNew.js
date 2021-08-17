@@ -104,7 +104,7 @@ const App = () => {
     }
 
     return (
-        <Router>
+        <>
             <div>
                 <Link style={padding} to='/'>home</Link>
                 <Link style={padding} to='/notes'>notes</Link>
@@ -136,7 +136,7 @@ const App = () => {
             <div>
                 <i>Note app</i>
             </div>
-        </Router>
+        </>
     )
 }
 
