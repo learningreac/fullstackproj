@@ -1,7 +1,7 @@
 import { useState } from "react"
 import {
     BrowserRouter as Router,
-    Link, Switch, Route, useParams, useHistory, Redirect
+    Link, Switch, Route, useParams, useHistory, Redirect, useRouteMatch
 } from "react-router-dom"
 
 const Home = () => (
@@ -22,9 +22,7 @@ const Notes = ({ notes }) => (
     </div>
 )
 
-const Note = ({ notes }) => {
-    const id = useParams().id
-    const note = notes.find(note => note.id === Number(id))
+const Note = ({ note }) => {
     return (
         <div>
             <h2>{note.content}</h2>
@@ -103,6 +101,11 @@ const App = () => {
         padding: 5
     }
 
+    const match = useRouteMatch('/notes/:id')
+    const note = match
+        ? notes.find(note => note.id === Number(match.params.id))
+        : null
+
     return (
         <>
             <div>
@@ -117,7 +120,7 @@ const App = () => {
 
             <Switch>
                 <Route path='/notes/:id'>
-                    <Note notes={notes} />
+                    <Note note={note} />
                 </Route>
                 <Route path='/notes'>
                     <Notes notes={notes} />
