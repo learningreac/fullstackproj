@@ -1,7 +1,5 @@
 import { useState } from "react"
-import {
-    BrowserRouter as Router,
-    Link, Switch, Route, useParams, useHistory, Redirect, useRouteMatch
+import { Link, Switch, Route, useParams, useHistory, Redirect, useRouteMatch
 } from "react-router-dom"
 
 const Home = () => (

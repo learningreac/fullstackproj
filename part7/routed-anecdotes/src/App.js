@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, Route, Switch, useParams, useRouteMatch } from 'react-router-dom'
+import { Link, Redirect, Route, Switch, useParams, useRouteMatch } from 'react-router-dom'
 
 const Menu = () => {
   const padding = {
@@ -14,19 +14,23 @@ const Menu = () => {
   )
 }
 
-const AnecdoteList = ({ anecdotes }) => (
-  <div>
-    <h2>Anecdotes</h2>
-    <ul>
-      {anecdotes.map(anecdote =>
-        <li key={anecdote.id}>
-          <Link to={`/anecdotes/${anecdote.id}`}>
-            {anecdote.content}
-          </Link>
-        </li>)}
-    </ul>
-  </div>
-)
+const AnecdoteList = ({ anecdotes, notification }) => {
+  console.log('notification',notification)
+  return (
+    <div>
+      <p>{notification ? `a new anecdote ${notification} created!` : null}</p>
+      <h2>Anecdotes</h2>
+      <ul>
+        {anecdotes.map(anecdote =>
+          <li key={anecdote.id}>
+            <Link to={`/anecdotes/${anecdote.id}`}>
+              {anecdote.content}
+            </Link>
+          </li>)}
+      </ul>
+    </div>
+  )
+}
 
 const Anecdote = ({ anecdote }) => {
   /*
@@ -42,9 +46,6 @@ const Anecdote = ({ anecdote }) => {
     </div>
   )
 }
-
-
-
 
 const About = () => (
   <div>
@@ -82,8 +83,11 @@ const CreateNew = (props) => {
       info,
       votes: 0
     })
+
+    //return <Redirect to='/' /> not working...
   }
 
+  //<p>{props.notification ? `a new anecdote ${props.notification} created!` : null}</p>
   return (
     <div>
       <h2>create a new anecdote</h2>
@@ -130,6 +134,10 @@ const App = () => {
   const addNew = (anecdote) => {
     anecdote.id = (Math.random() * 10000).toFixed(0)
     setAnecdotes(anecdotes.concat(anecdote))
+    setNotification(anecdote.content);
+    setTimeout(() => {
+      setNotification('')
+    }, 10 * 1000)
   }
 
   const anecdoteById = (id) =>
@@ -152,7 +160,7 @@ const App = () => {
     ? anecdotes.find(a => a.id === match.params.id)
     : null
 
-    
+
   return (
     <div>
       <h1>Software anecdotes</h1>
@@ -163,13 +171,15 @@ const App = () => {
           <Anecdote anecdote={anecdote} />
         </Route>
         <Route path='/create'>
-          <CreateNew addNew={addNew} />
+          {notification
+            ? <Redirect to='/' />
+            : <CreateNew addNew={addNew} notification={notification} />}
         </Route>
         <Route path='/about'>
           <About />
         </Route>
         <Route path='/'>
-          <AnecdoteList anecdotes={anecdotes} />
+          <AnecdoteList anecdotes={anecdotes} notification={notification} />
         </Route>
       </Switch>
 
