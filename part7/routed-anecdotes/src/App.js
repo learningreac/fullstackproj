@@ -75,8 +75,6 @@ const CreateNew = (props) => {
   const author = useField('text')
   const info = useField('text')
 
-  //console.log('content', content)
-
   const handleSubmit = (e) => {
     e.preventDefault()
     props.addNew({
@@ -89,7 +87,12 @@ const CreateNew = (props) => {
     //return <Redirect to='/' /> not working...
   }
 
-  //<p>{props.notification ? `a new anecdote ${props.notification} created!` : null}</p>
+  const handleReset= () => {
+    content.reset()
+    author.reset()
+    info.reset()
+  }
+
   return (
     <div>
       <h2>create a new anecdote</h2>
@@ -107,6 +110,7 @@ const CreateNew = (props) => {
           <input type={info.type} value={info.value} onChange={info.onChange} />
         </div>
         <button>create</button>
+        <button onClick={handleReset}>reset</button>
       </form>
     </div>
   )
