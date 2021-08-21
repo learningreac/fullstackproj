@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import axios from 'axios'
 
 
@@ -19,6 +19,8 @@ const useField = (type) => {
 
 const useResource = (baseUrl) => {
   const [resources, setResources] = useState([])
+  resources = useMemo( () => resources);
+  console.log(resources);
  
   useEffect (async() => {
     await axios
@@ -26,7 +28,7 @@ const useResource = (baseUrl) => {
     .then(response => {
       setResources(response.data)
     })
-  },[]) 
+  },[resources]) 
   // if put resources here, as it's an array, so uesEffect thought is different even when it's the same array, keep calling useEffect
   // if dependcy array is the baseUrl, then it won't re-render view when you creat new, as the url is the same
   // if it's empty array,it only render the first time.

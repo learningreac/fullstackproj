@@ -1,22 +1,35 @@
 import { useState } from "react"
-import { Link, Switch, Route, useParams, useHistory, Redirect, useRouteMatch
+import {
+    Link, Switch, Route, useParams, useHistory, Redirect, useRouteMatch
 } from "react-router-dom"
+import { Table, Form, Button } from 'react-bootstrap'
 
 const Home = () => (
-    <div> <h2>TKTL notes app</h2> </div>
+    <div>
+        <h2>TKTL notes app</h2>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+    </div>
 )
 
 const Notes = ({ notes }) => (
     <div>
         <h2>Notes</h2>
-        <ul>
-            {notes.map(note =>
-                <li key={note.id}>
-                    <Link to={`/notes/${note.id}`}>
-                        {note.content}
-                    </Link>
-                </li>)}
-        </ul>
+        <Table striped>
+            <tbody>
+                {notes.map(note =>
+                    <tr key={note.id}>
+                        <td>
+                            <Link to={`/notes/${note.id}`}>
+                                {note.content}
+                            </Link>
+                        </td>
+                        <td>
+                            {note.user}
+                        </td>
+                    </tr>
+                )}
+            </tbody>
+        </Table>
     </div>
 )
 
@@ -50,18 +63,26 @@ const Login = (props) => {
         history.push('/')
     }
 
+    console.log('login page')
     return (
         <div>
             <h2>login</h2>
-            <form onSubmit={onSubmit}>
-                <div>
-                    username: <input name='username' />
-                </div>
-                <div>
-                    password: <input type='password' />
-                </div>
-                <button type='submit'>login</button>
-            </form>
+            <Form onSubmit={onSubmit}>
+                <Form.Group>
+                    <Form.Label>username:</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="username"
+                    />
+                    <Form.Label>password:</Form.Label>
+                    <Form.Control
+                        type="password"
+                    />
+                    <Button variant="primary" type="submit">
+                        login
+                    </Button>
+                </Form.Group>
+            </Form>
         </div>
     )
 }
@@ -105,7 +126,7 @@ const App = () => {
         : null
 
     return (
-        <>
+        <div className='container'>
             <div>
                 <Link style={padding} to='/'>home</Link>
                 <Link style={padding} to='/notes'>notes</Link>
@@ -137,7 +158,7 @@ const App = () => {
             <div>
                 <i>Note app</i>
             </div>
-        </>
+        </div>
     )
 }
 
