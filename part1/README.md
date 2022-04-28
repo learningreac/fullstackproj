@@ -5,30 +5,18 @@
 --------------------------------------------------------
 ![Anecdotes](../part1/anecdotes/public/imgs/after_some_use_page.png?raw=true "anecdotes")
 
-<<<<<<< HEAD
-## 2. Unicafe
-=======
 ## 2.Unicafe
 >>>>>>> 4d9b7aadd2a98852752a9aaef3bd48422d2ef210
 - dispaly user feedback
 ![home](../part1/unicafe/public/home_page.png?raw=true "home")
 
-<<<<<<< HEAD
 
-# 3. A component show course information
-
-=======
 ## 3.A component show course information
 >>>>>>> 4d9b7aadd2a98852752a9aaef3bd48422d2ef210
 ![home](../part1/courseinfo/public/home_page.png?raw=true "home")
 
 ## 4.Example from Course: websites with navbar and routes
 
-<<<<<<< HEAD
-## 4. Example from Course: websites with navbar and routes
-
-## Home page
-=======
 ### Home page
 >>>>>>> 4d9b7aadd2a98852752a9aaef3bd48422d2ef210
 ![home](../part1/courseexample/public/imgs/websites_home_page.png?raw=true "home")

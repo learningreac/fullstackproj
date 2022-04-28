@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Pojects preview
 
 ## Part1
@@ -46,7 +45,4 @@
 
 - deployed with heroku
 - deployed address: https://gentle-tundra-28997.herokuapp.com/
-=======
-# fullstackproj
 
->>>>>>> 4d9b7aadd2a98852752a9aaef3bd48422d2ef210
