@@ -1,4 +1,4 @@
-# All projects
+## Projects for part 1
 
 ## 1. Anecdotes
 - Randomly show an anecdote which can be voted or not.
