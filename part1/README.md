@@ -4,18 +4,18 @@
 - Randomly show an anecdote which can be voted or not.
 ![Anecdotes](../part1/anecdotes/public/imgs/after_some_use_page.png?raw=true "anecdotes")
 
-## Unicafe
+## 2. Unicafe
 - dispaly user feedback
 
 ![home](../part1/unicafe/public/home_page.png?raw=true "home")
 
 
-# A component show course information
+# 3. A component show course information
 
 ![home](../part1/courseinfo/public/home_page.png?raw=true "home")
 
 
-## Example from Course: websites with navbar and routes
+## 4. Example from Course: websites with navbar and routes
 
 ## Home page
 ![home](../part1/courseexample/public/imgs/websites_home_page.png?raw=true "home")
