@@ -2,4 +2,4 @@
 
 - use Array.map() and Array.reduce() for components
 
-![home](public/home.png.png?raw=true "home")
+![home](public/home.png?raw=true "home")
