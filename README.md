@@ -46,3 +46,29 @@
 - deployed with heroku
 - deployed address: https://gentle-tundra-28997.herokuapp.com/
 
+
+## Part 6
+
+### 1. Anecdotes with Redux
+
+- two version of componets:
+- connect version 
+- useDispatch() version
+
+![home](./part6/redux-anecdotes/public/home.png?raw=true "home")
+
+### 2. Unicafe with Redux
+
+- this exercise focus on test part.
+- use deep-freeze library to test redux store.
+
+![home](./part6/unicafe-redux/public/home.png?raw=true "home")
+
+
+## Part 7
+
+### ultimate-hooks
+
+#### this part focus on customize hooks
+#### home page preview
+![home](./part7/ultimate-hooks/public/home.png?raw=true "home")

@@ -9,20 +9,8 @@
       "id": 2
     },
     {
-      "content": "nice try",
-      "id": 3
-    },
-    {
-      "content": "nice try",
-      "id": 4
-    },
-    {
       "content": "you need useEffect",
       "id": 5
-    },
-    {
-      "content": "you need useEffect",
-      "id": 6
     },
     {
       "content": "dependcy array should be empty",
@@ -31,14 +19,6 @@
     {
       "content": "why not render",
       "id": 8
-    },
-    {
-      "content": "tyr",
-      "id": 9
-    },
-    {
-      "content": "empty array",
-      "id": 10
     }
   ],
   "persons": [
@@ -56,16 +36,6 @@
       "name": "test name",
       "number": "234567",
       "id": 3
-    },
-    {
-      "name": "sss",
-      "number": "ssss",
-      "id": 4
-    },
-    {
-      "name": "works this time",
-      "number": "000",
-      "id": 5
     }
   ]
 }

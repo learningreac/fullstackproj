@@ -19,7 +19,7 @@ const useField = (type) => {
 
 const useResource = (baseUrl) => {
   const [resources, setResources] = useState([])
-  resources = useMemo( () => resources);
+//  resources = useMemo( () => resources);
   console.log(resources);
  
   useEffect (async() => {
