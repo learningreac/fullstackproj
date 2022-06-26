@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import peoplesService from './services/peoples';
+import Persons from './PersonList';
 
 //must run json server to get the intial data
 
@@ -15,37 +16,26 @@ const Filter = ({ showFilter, handleShowChange }) => {
 const PersonForm = ({ addPerson, newName, handleNameChange, newNumber, handleNumChange }) => {
   return (
     <form onSubmit={addPerson}>
-      <label>Name:</label>
-      <input value={newName} onChange={handleNameChange} />
-      <br />
-      <label>Number:</label>
-      <input value={newNumber} onChange={handleNumChange} />
-      <div>
-        <button type="submit">add</button>
+      <div class="mb-3">
+        <label for="phonebookNameInput" class="form-label">Name</label>
+        <input type="name" class="form-control"
+          id="phonebookNameInput" aria-describedby="nameInput"
+          value={newName} onChange={handleNameChange} />
       </div>
+
+      <div class="mb-3">
+        <label for="phonebookNumberInput" class="form-label">Number</label>
+        <input type="number" class="form-control"
+          id="phonebookNameInput" aria-describedby="NumberInput"
+          value={newNumber} onChange={handleNumChange} />
+      </div>
+
+
+      <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   )
 };
 
-const Persons = ({ personsToShow, deletePerson }) => {
-  console.log('personstoshow', personsToShow);
-  return (
-    // delete person.id  
-    // delete function is passed from APP, App does not know the id. the id is a local variable, it pass to the function when call it.
-    // notice also how the event handdler is defined here to Onclick.
-    // Onclick can not be assigned directly to a function call. 
-    <ul>
-      {personsToShow.map(person => {
-        return (
-          <li key={person.id}> {person.name} {person.number}
-            <button onClick={() => deletePerson(person.id)}> Delete </button>
-          </li>
-        )
-      }
-      )}
-    </ul>
-  )
-};
 
 const Notification = ({ message }) => {
   const messageStyle = {
