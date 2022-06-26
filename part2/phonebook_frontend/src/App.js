@@ -1,38 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import peoplesService from './services/peoples';
 import Persons from './PersonList';
-
+import PersonForm from './PersonForm';
 //must run json server to get the intial data
 
 const Filter = ({ showFilter, handleShowChange }) => {
   return (
-    <div>
-      <label>filter shown with:</label>
-      <input value={showFilter} onChange={handleShowChange}></input>
+    <div className="mb-3">
+      <label for="phonebookNameFilter" className="form-label">Filter Shown Name with:</label>
+      <input type="nameFilter" className="form-control"
+        id="phonebookNameFilter" aria-describedby="nameFilter"
+        value={showFilter} onChange={handleShowChange} />
     </div>
-  )
-};
 
-const PersonForm = ({ addPerson, newName, handleNameChange, newNumber, handleNumChange }) => {
-  return (
-    <form onSubmit={addPerson}>
-      <div class="mb-3">
-        <label for="phonebookNameInput" class="form-label">Name</label>
-        <input type="name" class="form-control"
-          id="phonebookNameInput" aria-describedby="nameInput"
-          value={newName} onChange={handleNameChange} />
-      </div>
-
-      <div class="mb-3">
-        <label for="phonebookNumberInput" class="form-label">Number</label>
-        <input type="number" class="form-control"
-          id="phonebookNameInput" aria-describedby="NumberInput"
-          value={newNumber} onChange={handleNumChange} />
-      </div>
-
-
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
   )
 };
 
@@ -166,22 +146,31 @@ const App = () => {
 
 
   return (
-    <div>
-      <h1>Phonebook</h1>
-      <Notification message={message} />
-      <Filter showFilter={newFilter} handleShowChange={handleShowChange} />
+    <div className='container'>
+      <h1 className="text-center text-uppercase pt-5">Phonebook</h1>
+      <div className='main d-flex flex-column d-sm-flex flex-sm-row'>
+        <div className='left p-3' style={{flex:1}}>
+          <Notification message={message} />
+          <Filter showFilter={newFilter} handleShowChange={handleShowChange} />
 
-      <h2>Add a new</h2>
-      <PersonForm
-        addPerson={addPerson}
-        newName={newName}
-        handleNameChange={handleNameChange}
-        newNumber={newNumber}
-        handleNumChange={handleNumChange}
-      />
+          {/* <h2 className="text-center text-uppercase pt-3">Add a new</h2> */}
+          <PersonForm
+            addPerson={addPerson}
+            newName={newName}
+            handleNameChange={handleNameChange}
+            newNumber={newNumber}
+            handleNumChange={handleNumChange}
+          />
+        </div>
 
-      <h2>Numbers</h2>
-      <Persons personsToShow={personsToShow} deletePerson={deletePerson} />
+        <div className='right p-3'  style={{flex:2}}>
+          {/* <h2 className="text-center text-uppercase pt-3">Numbers</h2> */}
+          <Persons personsToShow={personsToShow} deletePerson={deletePerson} />
+        </div>
+      </div>
+
+
+
     </div>
   )
 }

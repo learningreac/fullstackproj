@@ -16,16 +16,19 @@ const Persons = ({ personsToShow, deletePerson }) => {
                 </tr>
             </thead>
             <tbody>
-            {personsToShow.map(person => {
-                return (
-                    <tr key={person.id}>
-                        <td> {person.name} </td>
-                        <td> {person.number} </td>
-                        <td>  <button onClick={() => deletePerson(person.id)}> Delete </button> </td>
-                    </tr>
-                )
-            }
-            )}
+                {personsToShow.map(person => {
+                    return (
+                        <tr key={person.id}>
+                            <td> {person.name} </td>
+                            <td> {person.number} </td>
+                            <td>
+                                <button className="btn btn-primary btn-sm"
+                                    onClick={() => deletePerson(person.id)}> Delete </button>
+                            </td>
+                        </tr>
+                    )
+                }
+                )}
             </tbody>
         </table>
     )
