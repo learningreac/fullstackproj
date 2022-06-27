@@ -6,4 +6,9 @@
 - Styling with Boostrap
 - Responsive
 
-![home](public/home.png?raw=true "home")
+### Homepage
+![home](public//home_new.png?raw=true "home")
+
+### Responsive for mobile
+![home_mobile](public//home_mobile.png?raw=true "home_mobile")
+
