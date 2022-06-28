@@ -34,13 +34,13 @@ const AnecdoteList = () => {
         <div>
 
             {anecdotes.map(anecdote =>
-                <div key={anecdote.id}>
-                    <div>
+                <div className='itemlist p-1' key={anecdote.id}>
+                    <div className='text fs-6 fw-bold'>
                         {anecdote.content}
                     </div>
                     <div>
                         has {anecdote.votes}
-                        <button onClick={() => {
+                        <button className='btn btn-secondary btn-sm m-1' onClick={() => {
                             vote(anecdote.id)
                             notice(anecdote.id)
                         }}> vote </button>

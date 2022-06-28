@@ -16,8 +16,8 @@ const App = () => {
   },[]) 
  
   return (
-    <div>
-      <h2>Anecdotes</h2>
+    <div className='container'>
+      <h2 className='p-3'>Anecdotes</h2>
       <ConnectedNotification />
       <ConnectedFilter />
       <AnecdoteList />
