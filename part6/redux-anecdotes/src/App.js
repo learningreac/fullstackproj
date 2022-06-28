@@ -9,7 +9,14 @@ import ConnectedFilter from './connectVersionComponent/ConnectedFilter';
 import { useDispatch } from 'react-redux';
 import { initializeAnec } from './reducers/anecdoteReducer';
 
+import {fetcherAll} from "./services/swrExample";
+import useSWR from 'swr';
+
 const App = () => {
+  //SWR example
+  const {data, error} = useSWR("/api/testdata", fetcherAll);
+  console.log('useSWR data', data,error);
+
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(initializeAnec())
