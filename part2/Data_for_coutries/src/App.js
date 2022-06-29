@@ -1,60 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Weather from './Weather';
+import Countries from './components/Countries';
 
-const Countries = ({ input, countries, showInfo }) => {
-    if (input.length > 0 && countries.length > 10) {
-        return (
-            <p>Too many matches, specify another filter</p>
-        )
-    } else if (countries.length === 1) {
-        return <Country country={countries[0]}></Country>
-    }
-    return (
-        <div>
-            <ul>
-                {countries.map(country =>
-                    <li key={country.name}>{country.name}
-                        <button onClick={() => showInfo(country.name)}>Show</button>
-                    </li>
-                )}
-            </ul>
-        </div>
-    )
-};
+import CountryInfoService from './services/countrieInfo';
 
-const Country = ({ country }) => {
-    //console.log('single country', country, country.name);
-    return (
-        <div>
-            <h1>{country.name}</h1>
-            <p><b>Capital:</b>{country.capital}</p>
-            <p><b>Population:</b> {country.population}</p>
-            <div>
-                <h2>Languages</h2>
-                <ul>
-                    {country.languages.map(lan => <li key={lan.name}>{lan.name}</li>)}
-                </ul>
-            </div>
-            <img src={country.flag} alt="flag" width={200} style={{ boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)' }} />
-            <Weather name={country.name} />
-        </div>
-    )
-}
 
 const App = () => {
     const [input, SetInput] = useState('');
     const [countries, SetCountries] = useState([]);
+    console.log('top',input, countries)
 
-    // SetCountries(JSON.stringify(response.data))
     useEffect(() => {
-        axios
-            .get(`https://restcountries.eu/rest/v2/name/${input}`)
-            .then(response => {
-                console.log(response.data);
-                console.log(typeof response.data)
-                SetCountries(response.data);
-            })
+        // axios
+        //     .get(`https://restcountries.com/v3.1/name/${input}`) 
+        //     .then(response => {
+        //         console.log(response.data);
+        //         console.log(typeof response.data);
+        //         SetCountries(JSON.stringify(response.data));
+        //         // SetCountries(response.data);
+        //     })
+
+        CountryInfoService.getAll(input);
     }, [input])
 
 
