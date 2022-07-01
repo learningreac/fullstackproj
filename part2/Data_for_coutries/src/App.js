@@ -26,7 +26,7 @@ const App = () => {
     };
 
     const handleShowInfo = (name) => {
-        let targetCountry = countries.find(country => country.name === name);
+        let targetCountry = countries.find(country => country.name.common === name);
         console.log(targetCountry);
         console.log(typeof targetCountry); // OBJ
         SetCountries([targetCountry]);
