@@ -9,7 +9,7 @@ import CountryInfoService from './services/countrieInfo';
 const baseUrl = 'https://restcountries.com/v3.1/name';
 const AppSwr = () => {
     const [input, SetInput] = useState('');
-    const [singleCountry, setSingleCoutry] = useState({})
+    const [singleCountry, setSingleCoutry] = useState(null);  // undefined will still not cause conditional rendering
     const { data: countrydata, error } = useSWR(input ? `${baseUrl}/${input}` : null, CountryInfoService.fetcher);
     console.log("data", countrydata, error);
 
@@ -26,8 +26,8 @@ const AppSwr = () => {
 
     return (
         <div className='container'>
-            <h1> Search for Countries and Weather</h1>
-            <div className='d-flex'>
+            <h1 className='title text-center m-5'> Search for Countries and Weather</h1>
+            <div className='d-flex justify-content-around'>
                 <div className='left'>
                     <h2> Find Countries:</h2>
                     <input value={input} onChange={handleInputChange} />

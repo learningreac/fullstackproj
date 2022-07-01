@@ -10,7 +10,7 @@ const Weather = ({ name }) => {
     useEffect(() => {
         axios.get(`http://api.weatherstack.com/current?access_key=${api_key}&query=${name}`)
             .then(response => {
-                console.log('weather', response.data.current);
+                // console.log('weather', response.data.current);
                 setWeather(response.data.current);
             })
     }, [api_key,name]);
