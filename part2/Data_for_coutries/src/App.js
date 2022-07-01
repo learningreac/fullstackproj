@@ -1,27 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import Countries from './components/Countries';
 
 import CountryInfoService from './services/countrieInfo';
-
+import { countriesdata } from './mockdata';
 
 const App = () => {
     const [input, SetInput] = useState('');
-    const [countries, SetCountries] = useState([]);
-    console.log('top',input, countries)
+    const [countries, SetCountries] = useState(countriesdata);
+    console.log('top', input, countries[0])
 
-    useEffect(() => {
-        // axios
-        //     .get(`https://restcountries.com/v3.1/name/${input}`) 
-        //     .then(response => {
-        //         console.log(response.data);
-        //         console.log(typeof response.data);
-        //         SetCountries(JSON.stringify(response.data));
-        //         // SetCountries(response.data);
-        //     })
+    // useEffect(() => {
+    //     CountryInfoService.getAll(input)
+    //         .then(initialData => {
+    //             console.log(initialData);
+    //             console.log(typeof initialData)
+    //             SetCountries(initialData)
+    //         })
 
-        CountryInfoService.getAll(input);
-    }, [input])
+    // }, [input])
+
 
 
     const handleInputChange = (e) => {
@@ -29,13 +26,13 @@ const App = () => {
     };
 
     const handleShowInfo = (name) => {
-       let targetCountry = countries.find(country => country.name === name);
+        let targetCountry = countries.find(country => country.name === name);
         console.log(targetCountry);
         console.log(typeof targetCountry); // OBJ
         SetCountries([targetCountry]);
     };
 
-    //.map(country => <p key={country.name}>{country}</p>)  // this one cause the bug
+
     return (
         <div>
             Find Countries:

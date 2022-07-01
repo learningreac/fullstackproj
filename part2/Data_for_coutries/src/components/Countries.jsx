@@ -1,7 +1,10 @@
 import Country from "./Country";
 
 const Countries = ({ input, countries, showInfo }) => {
+    
+
     if (input.length > 0 && countries.length > 10) {
+      
         return (
             <p>Too many matches, specify another filter</p>
         )
@@ -9,13 +12,13 @@ const Countries = ({ input, countries, showInfo }) => {
         return <Country country={countries[0]}></Country>
     }
 
-    console.log('passdata', countries)
+    // return null;
     return (
         <div>
             <ul>
                 {countries.map(country =>
-                    <li key={country.name}>{country.name}
-                        <button onClick={() => showInfo(country.name)}>Show</button>
+                    <li key={country.name.common}>{country.name.common}
+                        <button onClick={() => showInfo(country.name.common)}>Show</button>
                     </li>
                 )}
             </ul>
