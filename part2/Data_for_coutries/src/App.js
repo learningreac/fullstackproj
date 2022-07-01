@@ -7,17 +7,17 @@ import { countriesdata } from './mockdata';
 const App = () => {
     const [input, SetInput] = useState('');
     const [countries, SetCountries] = useState(countriesdata);
-    console.log('top', input, countries[0])
+    // console.log('top', input, countries[0])
 
-    // useEffect(() => {
-    //     CountryInfoService.getAll(input)
-    //         .then(initialData => {
-    //             console.log(initialData);
-    //             console.log(typeof initialData)
-    //             SetCountries(initialData)
-    //         })
+    useEffect(() => {
+        CountryInfoService.getAll(input)
+            .then(initialData => {
+                console.log(initialData);
+                console.log(typeof initialData)
+                SetCountries(initialData)
+            })
 
-    // }, [input])
+    }, [input])
 
 
 
@@ -27,8 +27,8 @@ const App = () => {
 
     const handleShowInfo = (name) => {
         let targetCountry = countries.find(country => country.name.common === name);
-        console.log(targetCountry);
-        console.log(typeof targetCountry); // OBJ
+        // console.log(targetCountry);
+        // console.log(typeof targetCountry); // OBJ
         SetCountries([targetCountry]);
     };
 

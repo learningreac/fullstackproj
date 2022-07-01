@@ -12,7 +12,7 @@ const Languages = ({ languages }) => {
     return (
         <div className="languages">
             {
-                langArray.map((lan, index) => <p>{lan[0]}: {lan[1]}</p>)
+                langArray.map((lan, index) => <p key={index}>{lan[0]}: {lan[1]}</p>)
             }
         </div>
     )
@@ -33,7 +33,7 @@ const Country = ({ country }) => {
 
 
             </div>
-            <img src={country.flag} alt="flag" width={200} style={{ boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)' }} />
+            <img src={country.flags.png} alt="flag" width={200} style={{ boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)' }} />
             <Weather name={country.name.common} />
         </div>
     )

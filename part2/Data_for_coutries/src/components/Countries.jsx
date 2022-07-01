@@ -12,7 +12,6 @@ const Countries = ({ input, countries, showInfo }) => {
         return <Country country={countries[0]}></Country>
     }
 
-    // return null;
     return (
         <div>
             <ul>
