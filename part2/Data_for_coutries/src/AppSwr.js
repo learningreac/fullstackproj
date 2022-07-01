@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import useSWR from 'swr';
 import Countries from './components/Countries';
+import Country from './components/Country';
 
 import CountryInfoService from './services/countrieInfo';
 // import { countriesdata } from './mockdata';
@@ -8,8 +9,8 @@ import CountryInfoService from './services/countrieInfo';
 const baseUrl = 'https://restcountries.com/v3.1/name';
 const AppSwr = () => {
     const [input, SetInput] = useState('');
-    // const [countries, SetCountries] = useState([]);
-    const { data:countrydata, error } = useSWR(input? `${baseUrl}/${input}`:null, CountryInfoService.fetcher);
+    const [singleCountry, setSingleCoutry] = useState({})
+    const { data: countrydata, error } = useSWR(input ? `${baseUrl}/${input}` : null, CountryInfoService.fetcher);
     console.log("data", countrydata, error);
 
    
@@ -18,18 +19,26 @@ const AppSwr = () => {
     };
 
     const handleShowInfo = (name) => {
-        let targetCountry = countrydata.find(country => country.name.common === name);
-        // console.log(targetCountry);
-        // console.log(typeof targetCountry); // OBJ
-        // SetCountries([targetCountry]);
+        let target = countrydata.find(country => country.name.common === name);
+        setSingleCoutry(target);
     };
-
+    console.log('target', singleCountry);
 
     return (
         <div className='container'>
-            <h1> Find Countries:</h1>
-            <input value={input} onChange={handleInputChange} />
-          { countrydata && <Countries countries={countrydata} input={input} showInfo={handleShowInfo} />}
+            <h1> Search for Countries and Weather</h1>
+            <div className='d-flex'>
+                <div className='left'>
+                    <h2> Find Countries:</h2>
+                    <input value={input} onChange={handleInputChange} />
+                    {countrydata && <Countries countries={countrydata} input={input} showInfo={handleShowInfo} />}
+                </div>
+                <div className='right'>
+                {singleCountry && <Country country={singleCountry}></Country>}
+
+                </div>
+
+            </div>
         </div>
     )
 };

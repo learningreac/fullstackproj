@@ -14,10 +14,10 @@ const Countries = ({ input, countries, showInfo }) => {
 
     return (
         <div>
-            <ul>
+            <ul className="">
                 {countries.map(country =>
                     <li key={country.name.common}>{country.name.common}
-                        <button onClick={() => showInfo(country.name.common)}>Show</button>
+                        <button className="btn btn-primary btn-sm" onClick={() => showInfo(country.name.common)}>Show</button>
                     </li>
                 )}
             </ul>

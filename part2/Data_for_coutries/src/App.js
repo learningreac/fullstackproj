@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import useSWR from 'swr';
 import Countries from './components/Countries';
 
 import CountryInfoService from './services/countrieInfo';
-// import { countriesdata } from './mockdata';
 
-const baseUrl = 'https://restcountries.com/v3.1/name';
 const App = () => {
     const [input, SetInput] = useState('');
     const [countries, SetCountries] = useState([]);
-    const { data:countrydata, error } = useSWR(`${baseUrl}/${input}`, CountryInfoService.fetcher);
-    console.log("data", countrydata, error);
+    
 
     useEffect(() => {
         CountryInfoService.getAll(input)
