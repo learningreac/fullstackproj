@@ -7,6 +7,8 @@ const getAll = async (input) => {
     return request.then(response => response.data)
 };
 
-const CountryInfoService = { getAll };
+ const fetcher = url => axios.get(url).then(res => res.data);
+
+const CountryInfoService = { getAll, fetcher};
 
 export default CountryInfoService;

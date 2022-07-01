@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import useSWR from 'swr';
 import Countries from './components/Countries';
 
 import CountryInfoService from './services/countrieInfo';
-import { countriesdata } from './mockdata';
+// import { countriesdata } from './mockdata';
 
+const baseUrl = 'https://restcountries.com/v3.1/name';
 const App = () => {
     const [input, SetInput] = useState('');
-    const [countries, SetCountries] = useState(countriesdata);
-    // console.log('top', input, countries[0])
+    const [countries, SetCountries] = useState([]);
+    const { data, error } = useSWR(`${baseUrl}/${input}`, CountryInfoService.fetcher);
+    console.log("data", data, error);
 
     useEffect(() => {
         CountryInfoService.getAll(input)
             .then(initialData => {
-                console.log(initialData);
-                console.log(typeof initialData)
                 SetCountries(initialData)
             })
 
@@ -35,7 +36,7 @@ const App = () => {
 
     return (
         <div className='container'>
-           <h1> Find Countries:</h1>
+            <h1> Find Countries:</h1>
             <input value={input} onChange={handleInputChange} />
             <Countries countries={countries} input={input} showInfo={handleShowInfo} />
         </div>
