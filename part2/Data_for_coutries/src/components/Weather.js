@@ -24,8 +24,8 @@ const Weather = ({ name }) => {
   
     return (
 
-        <div>
-            <h2>{`Weather in ${name}`}</h2>
+        <div className="weather mt-5">
+            <h3>{`Weather in ${name}`}</h3>
             <p><b>temperature:</b>{weather.temperature} Celcius</p>
             <img src={weather.weather_icons} alt='weather icon' style={{ boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)' }}></img>
             <p><b>wind:</b> {weather.wind_speed} mph  <b>direction:</b>{weather.wind_dir}</p>

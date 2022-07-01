@@ -1,7 +1,5 @@
-import Country from "./Country";
 
-const Countries = ({ input, countries,  setSingleCountry }) => {
-    
+const Countries = ({ input, countries, setSingleCountry }) => {
 
     if (input.length > 0 && countries.length > 10) {
         return (
@@ -17,14 +15,15 @@ const Countries = ({ input, countries,  setSingleCountry }) => {
     };
 
     return (
-        <div>
-            <ul className="">
+        <div className="countryList">
+            <div className="list-group list-group-flush">
                 {countries.map(country =>
-                    <li key={country.name.common}>{country.name.common}
+                    <div key={country.name.common} className="d-flex justify-content-between m-1">
+                        <h5 className="listItem" >{country.name.common} </h5>
                         <button className="btn btn-primary btn-sm" onClick={() => handleShowInfo(country.name.common)}>Show</button>
-                    </li>
+                    </div>
                 )}
-            </ul>
+            </div>
         </div>
     )
 };

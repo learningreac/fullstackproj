@@ -17,23 +17,28 @@ const Languages = ({ languages }) => {
 }
 
 const Country = ({ country }) => {
-    if(country === undefined) return null;
+    if (country === undefined) return null;
 
-    console.log('single country', country,);    
+    console.log('single country', country,);
     const languages = country.languages; // type object
     return (
-        <div>
-            <h2>{country.name.common}</h2>
-            <p><b>Capital:</b>{country.capital[0]}</p>
-            <p><b>Population:</b> {country.population}</p>
-            <div>
-                <h2>Languages</h2>
-                <Languages languages={languages} />
+        <div className="country-info d-flex flex-column">
+            <div className="country-baic" style={{ flex: 3 }}>
+                <h3>{country.name.common}</h3>
+                <p><b>Capital:</b>{country.capital[0]}</p>
+                <p><b>Population:</b> {country.population}</p>
+                <div>
+                    <h4>Languages</h4>
+                    <Languages languages={languages} />
+                </div>
+                <img src={country.flags.png} alt="flag" width={200} style={{ boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)' }} />
             </div>
-            <img src={country.flags.png} alt="flag" width={200} style={{ boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)' }} />
-            <Weather name={country.name.common} />
+            <div  className="country-weather" style={{ flex: 1 }}>
+                <Weather name={country.name.common} />
+            </div>
+
         </div>
     )
-} 
+}
 
 export default Country;

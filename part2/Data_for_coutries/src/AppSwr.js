@@ -13,22 +13,25 @@ const AppSwr = () => {
     const { data: countrydata, error } = useSWR(input ? `${baseUrl}/${input}` : null, CountryInfoService.fetcher);
     console.log("data", countrydata, error);
 
-   
+
     const handleInputChange = (e) => {
         SetInput(e.target.value);
     };
 
     return (
         <div className='container'>
-            <h1 className='title text-center m-5'> Search for Countries and Weather</h1>
-            <div className='d-flex justify-content-around'>
-                <div className='left'>
-                    <h2> Find Countries:</h2>
-                    <input value={input} onChange={handleInputChange} />
+            <h1 className='title text-center mt-5'> Search for Countries and Weather</h1>
+            <div className='d-flex flex-column d-sm-flex flex-sm-row'>
+                <div className='left m-2' style={{ flex: 2 }}>
+                    <div class="mb-3">
+                        <label htmlFor="formCountryNameInput" className="form-label fw-bold"> Find Countries:</label>
+                        <input type="text" className="form-control" id="formCountryNameInput" placeholder="Country name" value={input} onChange={handleInputChange} />
+                    </div>
+
                     {countrydata && <Countries countries={countrydata} input={input} setSingleCountry={setSingleCountry} />}
                 </div>
-                <div className='right'>
-                {singleCountry && <Country country={singleCountry}></Country>}
+                <div className='right m-2' style={{ flex: 3 }}>
+                    {singleCountry && <Country country={singleCountry}></Country>}
 
                 </div>
 
