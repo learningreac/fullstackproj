@@ -12,7 +12,7 @@ const Languages = ({ languages }) => {
     return (
         <div className="languages">
             {
-                langArray.map((lan, index) => <p key={index}>{lan[0]}: {lan[1]}</p>)
+                langArray.map((lan, index) => <p key={index}> {lan[1]}</p>)
             }
         </div>
     )

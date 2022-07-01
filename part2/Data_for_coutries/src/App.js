@@ -34,8 +34,8 @@ const App = () => {
 
 
     return (
-        <div>
-            Find Countries:
+        <div className='container'>
+           <h1> Find Countries:</h1>
             <input value={input} onChange={handleInputChange} />
             <Countries countries={countries} input={input} showInfo={handleShowInfo} />
         </div>
