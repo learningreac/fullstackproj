@@ -1,9 +1,10 @@
 import ReactDOM from 'react-dom'
-import App from './App';
+//import App from './App';
+import AppSwr from "./AppSwr"
 
 
 
 ReactDOM.render(
-  <App />, 
+  <AppSwr />, 
   document.getElementById('root')
 )

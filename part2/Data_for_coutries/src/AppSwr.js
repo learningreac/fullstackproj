@@ -6,31 +6,22 @@ import CountryInfoService from './services/countrieInfo';
 // import { countriesdata } from './mockdata';
 
 const baseUrl = 'https://restcountries.com/v3.1/name';
-const App = () => {
+const AppSwr = () => {
     const [input, SetInput] = useState('');
-    const [countries, SetCountries] = useState([]);
-    const { data:countrydata, error } = useSWR(`${baseUrl}/${input}`, CountryInfoService.fetcher);
+    // const [countries, SetCountries] = useState([]);
+    const { data:countrydata, error } = useSWR(input? `${baseUrl}/${input}`:null, CountryInfoService.fetcher);
     console.log("data", countrydata, error);
 
-    useEffect(() => {
-        CountryInfoService.getAll(input)
-            .then(initialData => {
-                SetCountries(initialData)
-            })
-
-    }, [input])
-
-
-
+   
     const handleInputChange = (e) => {
         SetInput(e.target.value);
     };
 
     const handleShowInfo = (name) => {
-        let targetCountry = countries.find(country => country.name.common === name);
+        let targetCountry = countrydata.find(country => country.name.common === name);
         // console.log(targetCountry);
         // console.log(typeof targetCountry); // OBJ
-        SetCountries([targetCountry]);
+        // SetCountries([targetCountry]);
     };
 
 
@@ -38,9 +29,9 @@ const App = () => {
         <div className='container'>
             <h1> Find Countries:</h1>
             <input value={input} onChange={handleInputChange} />
-            <Countries countries={countries} input={input} showInfo={handleShowInfo} />
+          { countrydata && <Countries countries={countrydata} input={input} showInfo={handleShowInfo} />}
         </div>
     )
 };
 
-export default App;
+export default AppSwr;
