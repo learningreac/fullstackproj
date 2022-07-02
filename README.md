@@ -31,7 +31,7 @@
 - use REST for information
 - fetch contry geo info and weather info
 - the third party api not working at my nearest visit, will give anther try later.
-
+![home](./part2/Data_for_coutries/public/data_for_countries.png?raw=true "home")
 
 ### 3.phonebook frontend
 
