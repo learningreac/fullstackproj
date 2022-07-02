@@ -20,7 +20,7 @@ const AppSwr = () => {
 
     return (
         <div className='container'>
-            <h1 className='title text-center mt-5'> Search for Countries and Weather</h1>
+            <h1 className='title text-center my-5'> Search for Countries and Weather</h1>
             <div className='d-flex flex-column d-sm-flex flex-sm-row'>
                 <div className='left m-2' style={{ flex: 2 }}>
                     <div className="mb-3">
@@ -30,6 +30,7 @@ const AppSwr = () => {
 
                     {countrydata && <Countries countries={countrydata} input={input} setSingleCountry={setSingleCountry} />}
                 </div>
+                
                 <div className='right m-2' style={{ flex: 3 }}>
                     {singleCountry && <Country country={singleCountry}></Country>}
 
