@@ -1,4 +1,5 @@
 import Weather from "./Weather";
+import WeatherSwr from "./WeatherSwr";
 
 
 const Languages = ({ languages }) => {
@@ -34,7 +35,7 @@ const Country = ({ country }) => {
                 <img src={country.flags.png} alt="flag" width={200} style={{ boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)' }} />
             </div>
             <div  className="country-weather" style={{ flex: 1 }}>
-                <Weather name={country.name.common} />
+                <WeatherSwr name={country.name.common} />
             </div>
 
         </div>

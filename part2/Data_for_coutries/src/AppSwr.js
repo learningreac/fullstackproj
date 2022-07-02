@@ -4,7 +4,7 @@ import Countries from './components/Countries';
 import Country from './components/Country';
 
 import CountryInfoService from './services/countrieInfo';
-// import { countriesdata } from './mockdata';
+
 
 const baseUrl = 'https://restcountries.com/v3.1/name';
 const AppSwr = () => {
@@ -23,7 +23,7 @@ const AppSwr = () => {
             <h1 className='title text-center mt-5'> Search for Countries and Weather</h1>
             <div className='d-flex flex-column d-sm-flex flex-sm-row'>
                 <div className='left m-2' style={{ flex: 2 }}>
-                    <div class="mb-3">
+                    <div className="mb-3">
                         <label htmlFor="formCountryNameInput" className="form-label fw-bold"> Find Countries:</label>
                         <input type="text" className="form-control" id="formCountryNameInput" placeholder="Country name" value={input} onChange={handleInputChange} />
                     </div>
